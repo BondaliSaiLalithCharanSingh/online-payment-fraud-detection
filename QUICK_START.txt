@@ -1,0 +1,72 @@
+================================================================================
+  ONLINE PAYMENTS FRAUD DETECTION - QUICK START
+================================================================================
+
+STEP 1: DOWNLOAD DATASET
+-------------------------
+Visit: https://www.kaggle.com/datasets/rupakroy/online-payments-fraud-detection-dataset
+Download: PS_20174392719_1491204439457_log.csv
+Place in: data/ folder
+
+STEP 2: INSTALL DEPENDENCIES
+-----------------------------
+cd "c:\Users\DINESH V A\Desktop\Online Fraud"
+pip install -r requirements.txt
+
+STEP 3: TRAIN MODEL
+-------------------
+jupyter notebook
+Open: training/ONLINE PAYMENTS FRAUD DETECTION.ipynb
+Click: Run All
+Wait: 5-10 minutes
+
+STEP 4: RUN APPLICATION
+-----------------------
+cd flask
+python app.py
+
+STEP 5: ACCESS WEB APP
+----------------------
+Browser: http://127.0.0.1:5000/
+
+================================================================================
+TEST DATA - FRAUD CASE
+================================================================================
+Step: 94
+Type: 4
+Amount: 14.590090
+OldbalanceOrg: 2169679.91
+NewbalanceOrig: 0.0
+OldbalanceDest: 0.00
+NewbalanceDest: 0.00
+Expected Result: Is Fraud
+
+================================================================================
+TEST DATA - LEGITIMATE CASE
+================================================================================
+Step: 1
+Type: 3
+Amount: 9.194174
+OldbalanceOrg: 170136.00
+NewbalanceOrig: 160236.36
+OldbalanceDest: 0.00
+NewbalanceDest: 0.00
+Expected Result: Not Fraud
+
+================================================================================
+TRANSACTION TYPE CODES
+================================================================================
+0 = CASH_IN
+1 = CASH_OUT
+2 = DEBIT
+3 = PAYMENT
+4 = TRANSFER
+
+================================================================================
+NEED HELP?
+================================================================================
+Check: README.md (detailed documentation)
+Check: SETUP_GUIDE.md (troubleshooting)
+Check: PROJECT_SUMMARY.md (implementation details)
+
+================================================================================

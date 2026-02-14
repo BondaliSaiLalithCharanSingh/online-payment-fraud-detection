@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection - Predict</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-container h1 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .form-container p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🔒 Fraud Detection System</h1>
+        <div class="nav-buttons">
+            <a href="/home" class="nav-btn">Home</a>
+            <a href="/predict" class="nav-btn">Predict</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Online Payments Fraud Detection</h1>
+            <p>Enter transaction details to check for potential fraud</p>
+
+            <form action="/pred" method="POST">
+                <div class="form-group">
+                    <label for="step">Step</label>
+                    <input type="number" id="step" name="step" placeholder="Enter step value (e.g., 94)" required>
+                    <div class="info-text">Transaction time unit</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input type="number" id="type" name="type" placeholder="Enter type (0-4)" min="0" max="4" required>
+                    <div class="info-text">0: CASH_IN, 1: CASH_OUT, 2: DEBIT, 3: PAYMENT, 4: TRANSFER</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" step="0.01" id="amount" name="amount" placeholder="Enter amount (e.g., 14.590090)" required>
+                    <div class="info-text">Transaction amount</div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="oldbalanceOrg">OldbalanceOrg</label>
+                        <input type="number" step="0.01" id="oldbalanceOrg" name="oldbalanceOrg" placeholder="e.g., 2169679.91" required>
+                        <div class="info-text">Origin old balance</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newbalanceOrig">NewbalanceOrig</label>
+                        <input type="number" step="0.01" id="newbalanceOrig" name="newbalanceOrig" placeholder="e.g., 0.0" required>
+                        <div class="info-text">Origin new balance</div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="oldbalanceDest">OldbalanceDest</label>
+                        <input type="number" step="0.01" id="oldbalanceDest" name="oldbalanceDest" placeholder="e.g., 0.00" required>
+                        <div class="info-text">Destination old balance</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newbalanceDest">NewbalanceDest</label>
+                        <input type="number" step="0.01" id="newbalanceDest" name="newbalanceDest" placeholder="e.g., 0.00" required>
+                        <div class="info-text">Destination new balance</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">🔍 Detect Fraud</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
