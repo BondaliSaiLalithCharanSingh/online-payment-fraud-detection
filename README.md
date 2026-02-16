@@ -7,29 +7,38 @@ A comprehensive machine learning system that detects fraudulent online payment t
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+---
+
 ## 🎯 Project Overview
 
 This project implements a proactive fraud detection system that analyzes historical transaction data, customer behavior patterns, and machine learning algorithms to identify and prevent fraudulent activities during online transactions in real-time.
 
 ### Key Features
 
-- **Real-time Fraud Monitoring**: Continuously monitors online payment transactions
-- **Multiple ML Models**: Compares 5 different algorithms (Random Forest, Decision Tree, Extra Trees, SVC, XGBoost)
-- **High Accuracy**: Achieves ~79% accuracy using Support Vector Classifier
-- **Modern Web Interface**: Clean, responsive UI for easy interaction
-- **Comprehensive Analysis**: Extensive EDA with 15+ visualizations
-- **Adaptive Learning**: System improves over time with new data
+- Real-time fraud monitoring  
+- Multiple ML models: Random Forest, Decision Tree, Extra Trees, SVC, XGBoost  
+- High accuracy: ~79% using Support Vector Classifier  
+- Modern, responsive Flask-based web UI  
+- Extensive EDA with 15+ visualizations  
+- Supports retraining with new data  
+
+---
 
 ## 📊 Scenarios
 
-### Scenario 1: Real-time Fraud Monitoring
-The system continuously monitors transactions by analyzing features such as transaction amount, location, device information, and user behavior to flag suspicious activities.
+### Scenario 1: Real-time Fraud Monitoring  
+The system analyzes transaction attributes such as amount, balances, and transaction type to flag suspicious activity.
 
-### Scenario 2: Fraudulent Account Detection
-Machine learning models detect patterns indicative of fraudulent accounts by analyzing user behavior over time, including unusual login times and spending patterns.
+### Scenario 2: Fraudulent Account Detection  
+User transaction patterns over time are analyzed to detect suspicious or fraudulent accounts.
 
-### Scenario 3: Adaptive Fraud Prevention
-The system adapts and improves its fraud detection capabilities by continuously learning from new data and adjusting algorithms to stay ahead of evolving fraud techniques.
+### Scenario 3: Adaptive Fraud Prevention  
+The system can be periodically retrained to adapt to evolving fraud patterns.
+
+---
+
+## 🏗️ Project Structure
+
 
 ## 🏗️ Project Structure
 
@@ -98,37 +107,6 @@ All required packages are listed in `requirements.txt`:
 - jupyter
 - notebook
 
-## 🚀 Installation
-
-### Step 1: Clone or Download the Project
-```bash
-cd "c:\Users\DINESH V A\Desktop\Online Fraud"
-```
-
-### Step 2: Install Dependencies
-
-**Using pip:**
-```bash
-pip install -r requirements.txt
-```
-
-**Or install individually:**
-```bash
-pip install numpy pandas scikit-learn matplotlib seaborn scipy Flask xgboost pickle-mixin jupyter notebook
-```
-
-### Step 3: Download Dataset
-Download the dataset from Kaggle:
-- **Link**: [Online Payments Fraud Detection Dataset](https://www.kaggle.com/datasets/rupakroy/online-payments-fraud-detection-dataset)
-- **File**: PS_20174392719_1491204439457_log.csv
-- **Location**: Place in the `data/` folder
-
-Alternatively, use kagglehub:
-```python
-import kagglehub
-path = kagglehub.dataset_download("rupakroy/online-payments-fraud-detection-dataset")
-print("Path to dataset files:", path)
-```
 
 ## 📊 Training the Model
 
@@ -314,4 +292,3 @@ By completing this project, you will:
 
 ---
 
-**Built with ❤️ using Python, Machine Learning, and Flask**
